@@ -1,0 +1,67 @@
+<!DOCTYPE html> 
+<html lang="zh" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>我的网站</title>
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+    <div class="navbar">
+        <a class="active" href="login.html">登录/注册</a>
+        <a href="news.html">新闻</a>
+        <a href="contact.html">联系我们</a>
+        <a href="index.html">首页</a>
+    </div>
+
+    <!-- 滚动图片容器（包含控制按钮和内容） -->
+    <div class="slider">
+        <!-- 左右切换按钮 -->
+        <button class="prev-btn">❮</button>
+        <button class="next-btn">❯</button>
+        
+        <!-- 图片内容区 -->
+        <div class="slider-inner">
+            <!-- 单张宣传图（包含图片、文字、按钮） -->
+            <div class="slide-item">
+                <img src="images/img1.jpg" alt="图片1">
+                <div class="slide-content">
+                    <h2>享受建筑的快乐</h2>
+                    <p>点击登录，了解更多详情</p>
+                    <a href="login.html" style="text-decoration: none;">
+                        <button class="slide-btn">立即加入</button>
+                    </a>
+                </div>
+            </div>
+            <div class="slide-item">
+                <img src="images/img2.jpg" alt="图片2">
+                <div class="slide-content">
+                    <h2>网站功能问卷调查</h2>
+                    <p>我们的网站功能目前还不完整，欢迎提出意见！</p>
+                    <a href="https://www.wjx.cn/vm/Q6wnxZ8.aspx#" style="text-decoration: none;">
+                        <button class="slide-btn">查看详情</button>
+                    </a>
+                </div>
+            </div>
+            <div class="slide-item">
+                <img src="images/img3.jpg" alt="图片3">
+                <div class="slide-content">
+                    <h2>BOOM！！！</h2>
+                    <p>每周五晚上9点服务器对外开放，炸图爱好者的圣地</p>
+                    <a href="product.html" style="text-decoration: none;">
+                        <button class="slide-btn">查看详情</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>欢迎来到我的网站！</h1> 
+    <p>这是我的第一个项目。</p>
+
+    <button onclick="greet()">点击下载国家反诈app</button>
+    <script src="script.js"></script>
+</body>
+</html>

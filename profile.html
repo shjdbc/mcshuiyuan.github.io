@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module">
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        // 监听登录状态
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            document.getElementById('userEmail').textContent = user.email;
+        });
+    </script>
+</head>
+
+<body>
+    <div class="profile-container">
+        <h2>欢迎您，<span id="userEmail"></span></h2>
+        <button id="logoutBtn">退出登录</button>
+    </div>
+
+    <script type="module">
+        import { firebaseConfig } from './firebase-config.js';
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // 退出功能
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                window.location.href = `login.html?logout=${Date.now()}`;
+            } catch (error) {
+                alert(`退出失败: ${error.message}`);
+            }
+        });
+    </script>
+</body>
+</html>

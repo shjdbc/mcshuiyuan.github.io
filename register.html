@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">  <!-- 复用login.html的容器类 -->
+        <h2>注册</h2>  <!-- 添加标题 -->
+        <!-- 替换原来的JavaScript提交 -->
+        <form action="register.php" method="POST">
+            <input type="email" name="email" placeholder="邮箱" required>
+            <input type="password" name="password" placeholder="密码" required>
+            <button type="submit">注册</button>
+        </form>
+        <p>已有账号？<a href="login.html">立即登录！</a></p>
+    </div>
+    <script>
+</script>
+<script>
+    function register() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // 前端验证密码一致性
+        if (password !== confirmPassword) {
+            alert('两次输入的密码不一致！');
+            return;
+        }
+
+        // 执行Firebase注册
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                alert('注册成功，即将跳转至登录页面！');
+                window.location.href = 'login.html';
+            })
+            .catch((error) => {
+                console.error(error);
+                alert('注册失败: ' + error.message);
+            });
+    }
+</script>
+</body>
+</html>

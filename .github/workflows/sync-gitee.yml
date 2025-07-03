@@ -1,0 +1,27 @@
+name: Sync to Gitee
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  sync:
+    steps:
+    - name: Deploy to Gitee Pages
+      run: |
+        git checkout --orphan gh-pages
+        git add -A
+        git commit -m "Initial pages"
+        git push -f origin gh-pages
+        curl -X POST https://gitee.com/api/v5/repos/shjdbc/mcshuiyuan.github.io/pages/builds \
+          -H "Content-Type: application/json" \
+          -d '{"access_token":"${{ secrets.GITEE_TOKEN }}"}'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Mirror to Gitee
+      uses: wearerequired/git-mirror-action@v1
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+      with:
+        source-repo: git@github.com:shjdbc/mcshuiyuan.github.io.git
+        destination-repo: git@gitee.com:ruizefan/mcshuiyuan.github.io.git
